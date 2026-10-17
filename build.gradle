@@ -116,6 +116,10 @@ configurations {
 }
 
 dependencies {
+    // GeckoLib 4 (animated models for the dragon fight's spell effects). Kept as a local jar in libs/
+    // so the build does not depend on an outside maven repository.
+    implementation files("libs/geckolib-neoforge-1.21.1-${geckolib_version}.jar")
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
@@ -187,4 +191,9 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+// Ship the license inside the jar.
+tasks.named('jar') {
+    from(rootProject.file('LICENSE'))
 }
